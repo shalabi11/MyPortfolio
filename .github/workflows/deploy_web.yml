@@ -23,8 +23,23 @@ jobs:
       - name: Get Flutter dependencies
         run: flutter pub get
 
-      - name: Build web
+      - name: Build web (optimized)
         run: flutter build web --release --base-href /MyPortfolio/
+
+      # 🔹 ضغط الصور وتحويلها لـ WebP
+      - name: Optimize images
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webp
+          find build/web/assets -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \) -exec cwebp -q 80 {} -o {}.webp \;
+          find build/web/assets -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \) -exec rm {} \;
+
+      # 🔹 ضغط ملفات HTML, CSS, JS
+      - name: Optimize assets (HTML, CSS, JS)
+        run: |
+          sudo apt-get install -y brotli
+          find build/web -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' \) -exec gzip -9 -k {} \;
+          find build/web -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' \) -exec brotli -9 {} \;
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
