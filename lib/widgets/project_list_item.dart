@@ -15,22 +15,27 @@ class ProjectListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // --- الإصلاح: جلب الصورة الرئيسية بشكل صحيح ---
+    final bool hasFeaturesWithImages =
+        project.features.isNotEmpty &&
+        project.features.first.imagePaths.isNotEmpty;
+
+    final String mainImagePath = hasFeaturesWithImages
+        ? project.features.first.imagePaths.first
+        : 'assets/images/placeholder.png'; // تأكد من وجود صورة احتياطية بهذا المسار
+
     return Card(
       clipBehavior: Clip.antiAlias,
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Row(
         children: [
-          // ▼▼▼ الجزء الأيسر: الصورة بعرض ثابت (التعديل الرئيسي) ▼▼▼
+          // الجزء الأيسر: الصورة بعرض ثابت
           ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 250, // <-- تحديد عرض أقصى ثابت للصورة
-            ),
+            constraints: const BoxConstraints(maxWidth: 250),
             child: Container(
               padding: const EdgeInsets.all(12.0),
-              decoration: BoxDecoration(
-                color: Colors.grey[900], // تفتيح لون الإطار قليلاً
-              ),
+              decoration: BoxDecoration(color: Colors.grey[900]),
               child: Container(
                 padding: const EdgeInsets.all(12.0),
                 decoration: BoxDecoration(
@@ -40,14 +45,16 @@ class ProjectListItem extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(project.imagePath, fit: BoxFit.contain),
+                  child: Image.asset(
+                    mainImagePath, // <-- استخدام المسار الصحيح
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
           ),
-          // ▲▲▲ انتهى التعديل ▲▲▲
 
-          // الجزء الأيمن: التفاصيل (تبقى Expanded لتأخذ باقي المساحة)
+          // الجزء الأيمن: التفاصيل
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -93,11 +100,20 @@ class ProjectListItem extends StatelessWidget {
                         OutlinedButton.icon(
                           icon: const Icon(Icons.visibility, size: 18),
                           label: const Text('View Project'),
-                          onPressed: () => Navigator.pushNamed(
-                            context,
-                            '/project', // اسم المسار فقط
-                            arguments: project, // تمرير البيانات هنا
-                          ),
+                          onPressed: () async {
+                            // <-- 1. اجعل الدالة async
+                            await Future.delayed(
+                              const Duration(milliseconds: 50),
+                            ); // <-- 2. أضف التأخير
+                            if (context.mounted) {
+                              // <-- 3. تأكد أن الويدجت ما زال موجودًا
+                              Navigator.pushNamed(
+                                context,
+                                '/project',
+                                arguments: project,
+                              );
+                            }
+                          },
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Colors.white,
                             side: const BorderSide(color: Colors.white),

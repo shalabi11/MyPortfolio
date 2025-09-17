@@ -15,10 +15,17 @@ class ProjectCard extends StatefulWidget {
 class _ProjectCardState extends State<ProjectCard> {
   bool _isHovered = false;
 
-  // ... دالة _launchURL تبقى كما هي
-
   @override
   Widget build(BuildContext context) {
+    // --- الإصلاح: جلب الصورة الرئيسية بشكل صحيح ---
+    final bool hasFeaturesWithImages =
+        widget.project.features.isNotEmpty &&
+        widget.project.features.first.imagePaths.isNotEmpty;
+
+    final String mainImagePath = hasFeaturesWithImages
+        ? widget.project.features.first.imagePaths.first
+        : 'assets/images/Picture1.png'; // صورة احتياطية
+
     return InkWell(
       onTap: () => setState(() => _isHovered = !_isHovered),
       onHover: (isHovering) => setState(() => _isHovered = isHovering),
@@ -27,28 +34,24 @@ class _ProjectCardState extends State<ProjectCard> {
         elevation: _isHovered ? 10 : 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: ClipRRect(
-          // استخدام ClipRRect لجعل كل المحتوى يتبع حواف البطاقة
           borderRadius: BorderRadius.circular(15.0),
           child: AspectRatio(
-            // <-- أهم إضافة: فرض أبعاد الصورة
-            aspectRatio: 9 / 16, // نسبة أبعاد شاشة الموبايل (عرض 9 وارتفاع 16)
+            aspectRatio: 9 / 16,
             child: Stack(
               children: [
-                // الطبقة 1: الصورة (تملأ المساحة بالكامل)
                 Positioned.fill(
                   child: Image.asset(
-                    widget.project.imagePath,
-                    fit: BoxFit.cover, // cover مناسب هنا لأن الأبعاد مضبوطة
+                    mainImagePath, // <-- استخدام المسار الصحيح
+                    fit: BoxFit.cover,
                   ),
                 ),
-                // الطبقة 2: طبقة التعتيم
                 Positioned.fill(
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Colors.black.withOpacity(0.7),
-                          Colors.black.withOpacity(0.1),
+                          Colors.black.withOpacity(0.8),
+                          Colors.black.withOpacity(0.4),
                         ],
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
@@ -64,7 +67,11 @@ class _ProjectCardState extends State<ProjectCard> {
                     children: [
                       Text(
                         widget.project.title,
-                        style: GoogleFonts.montserrat(/* ... */),
+                        style: GoogleFonts.montserrat(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                       const SizedBox(height: 10),
                       AnimatedSwitcher(
@@ -132,11 +139,20 @@ class _ProjectCardState extends State<ProjectCard> {
               OutlinedButton.icon(
                 icon: const Icon(Icons.visibility, size: 18),
                 label: const Text('View Project'),
-                onPressed: () => Navigator.pushNamed(
-                  context,
-                  '/project', // اسم المسار فقط
-                  arguments: widget.project, // تمرير البيانات هنا
-                ),
+                onPressed: () async {
+                  // <-- 1. اجعل الدالة async
+                  await Future.delayed(
+                    const Duration(milliseconds: 50),
+                  ); // <-- 2. أضف التأخير
+                  if (context.mounted) {
+                    // <-- 3. تأكد أن الويدجت ما زال موجودًا
+                    Navigator.pushNamed(
+                      context,
+                      '/project',
+                      arguments: widget.project,
+                    );
+                  }
+                },
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.white,
                   side: const BorderSide(color: Colors.white),

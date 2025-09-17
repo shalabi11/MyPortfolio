@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Faculity App",
+    "description": "An application for university students to view schedules, news, and notifications.",
+    "projectUrl": "https://github.com/shalabi11/faculity_app1",
+    "galleryUrl": "YOUR_LIVE_DEMO_OR_GALLERY_URL_HERE",
+    "technologies": [
+      "Flutter",
+      "Firebase",
+      "Bloc"
+    ],
+    "features": [
+      {
+        "title": "User Authentication & Secure Access",
+        "description": "Implemented a complete authentication system using Firebase, providing secure login, registration, and password recovery functionalities to protect user data.",
+        "imagePaths": [
+          "assets/images/Picture1.png",
+          "assets/images/Picture1.png",
+          "assets/images/Picture1.png"
+     
+        ]
+      },
+      {
+        "title": "Dynamic Schedules & Real-time Updates",
+        "description": "Developed a feature to display dynamic university schedules fetched from a live database. Users receive real-time updates and notifications about any changes.",
+        "imagePaths": [
+          "assets/images/Picture1.png"
+        ]
+      }
+    ]
+  }
+]
