@@ -15,12 +15,7 @@ class ProjectCard extends StatefulWidget {
 class _ProjectCardState extends State<ProjectCard> {
   bool _isHovered = false;
 
-  Future<void> _launchURL(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      throw 'Could not launch $url';
-    }
-  }
+  // ... دالة _launchURL تبقى كما هي
 
   @override
   Widget build(BuildContext context) {
@@ -31,71 +26,91 @@ class _ProjectCardState extends State<ProjectCard> {
         clipBehavior: Clip.antiAlias,
         elevation: _isHovered ? 10 : 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: Image.asset(widget.project.imagePath, fit: BoxFit.cover),
-            ),
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.black.withOpacity(0.8),
-                      Colors.black.withOpacity(0.4),
-                    ],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
+        child: ClipRRect(
+          // استخدام ClipRRect لجعل كل المحتوى يتبع حواف البطاقة
+          borderRadius: BorderRadius.circular(15.0),
+          child: AspectRatio(
+            // <-- أهم إضافة: فرض أبعاد الصورة
+            aspectRatio: 9 / 16, // نسبة أبعاد شاشة الموبايل (عرض 9 وارتفاع 16)
+            child: Stack(
+              children: [
+                // الطبقة 1: الصورة (تملأ المساحة بالكامل)
+                Positioned.fill(
+                  child: Image.asset(
+                    widget.project.imagePath,
+                    fit: BoxFit.cover, // cover مناسب هنا لأن الأبعاد مضبوطة
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.project.title,
-                    style: GoogleFonts.montserrat(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                // الطبقة 2: طبقة التعتيم
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.black.withOpacity(0.8),
+                          Colors.black.withOpacity(0.4),
+                        ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 300),
-                    transitionBuilder: (child, animation) {
-                      return FadeTransition(opacity: animation, child: child);
-                    },
-                    child: _isHovered
-                        ? _buildDetailsView()
-                        : _buildDescriptionView(),
+                ),
+                // الطبقة 3: المحتوى المتغير (يبقى كما هو)
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.project.title,
+                        style: GoogleFonts.montserrat(/* ... */),
+                      ),
+                      const SizedBox(height: 10),
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        child: _isHovered
+                            ? _buildDetailsView()
+                            : _buildDescriptionView(),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 
+  // ... باقي الدوال (_buildDescriptionView, _buildDetailsView) تبقى كما هي
+  // ...
+
+  // دالة لفتح الروابط
+  Future<void> _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw 'Could not launch $url';
+    }
+  }
+
+  // ويدجت لعرض الوصف (الحالة الافتراضية)
   Widget _buildDescriptionView() {
     return Text(
       widget.project.description,
-      key: const ValueKey('description'),
+      key: const ValueKey('description'), // مفتاح لـ AnimatedSwitcher
       style: const TextStyle(color: Colors.white70, fontSize: 16),
       maxLines: 4,
       overflow: TextOverflow.ellipsis,
     );
   }
 
+  // ويدجت لعرض التفاصيل (حالة التمرير/النقر)
   Widget _buildDetailsView() {
     return Column(
-      key: const ValueKey('details'),
+      key: const ValueKey('details'), // مفتاح لـ AnimatedSwitcher
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -111,11 +126,9 @@ class _ProjectCardState extends State<ProjectCard> {
           }).toList(),
         ),
         const SizedBox(height: 20),
-        // ▼▼▼ هنا الإصلاح ▼▼▼
         Wrap(
-          // استخدام Wrap بدلاً من Row
-          spacing: 8.0, // مسافة أفقية بين الأزرار
-          runSpacing: 10.0, // مسافة عمودية في حال نزول زر لسطر جديد
+          spacing: 10.0,
+          runSpacing: 10.0,
           children: [
             ElevatedButton.icon(
               icon: const FaIcon(FontAwesomeIcons.github, size: 16),
@@ -134,7 +147,6 @@ class _ProjectCardState extends State<ProjectCard> {
               ),
           ],
         ),
-        // ▲▲▲ انتهى الإصلاح ▲▲▲
       ],
     );
   }

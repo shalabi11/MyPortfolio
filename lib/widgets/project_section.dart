@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/data/project_data.dart';
 import 'package:my_portfolio/widgets/project_card.dart';
+import 'package:my_portfolio/widgets/project_list_item.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});
@@ -11,28 +13,43 @@ class ProjectsSection extends StatelessWidget {
       padding: const EdgeInsets.all(30),
       child: Column(
         children: [
-          const Text(
+          Text(
             'My Projects',
-            style: TextStyle(
+            style: GoogleFonts.montserrat(
               fontSize: 32,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
           const SizedBox(height: 30),
-
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 400,
-              childAspectRatio: 0.58,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-            ),
-            itemCount: projects.length,
-            itemBuilder: (BuildContext ctx, index) {
-              return ProjectCard(project: projects[index]);
+          LayoutBuilder(
+            builder: (context, constraints) {
+              if (constraints.maxWidth < 768) {
+                // --- تصميم شاشة الموبايل الجديد (قائمة عمودية) ---
+                return ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: projects.length,
+                  itemBuilder: (context, index) {
+                    // نستخدم نفس تصميم البطاقة التفاعلية
+                    return ProjectCard(project: projects[index]);
+                  },
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 20),
+                );
+              } else {
+                // --- تصميم شاشة اللابتوب (يبقى كما هو) ---
+                return ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: projects.length,
+                  itemBuilder: (context, index) {
+                    return ProjectListItem(project: projects[index]);
+                  },
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 20),
+                );
+              }
             },
           ),
         ],

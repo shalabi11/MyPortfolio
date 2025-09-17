@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/widgets/about_section.dart';
 import 'package:my_portfolio/widgets/contact_section.dart';
 import 'package:my_portfolio/widgets/custom_app_bar.dart';
+import 'package:my_portfolio/widgets/footer.dart';
 import 'package:my_portfolio/widgets/hero_section.dart';
 import 'package:my_portfolio/widgets/project_section.dart';
 import 'package:animate_do/animate_do.dart';
@@ -102,6 +103,7 @@ class _HomePageState extends State<HomePage> {
             FadeInUp(child: ProjectsSection(key: _projectsKey)),
             FadeInUp(child: AboutSection(key: _aboutKey)),
             FadeInUp(child: ContactSection(key: _contactKey)),
+            const Footer(),
           ],
         ),
       ),
