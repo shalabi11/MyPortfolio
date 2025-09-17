@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: FittedBox(
         fit: BoxFit.fitWidth,
         child: Text(
-          'Ibrahim al shalabi',
+          'Ibrahim moussa al shalabi',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
