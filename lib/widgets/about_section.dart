@@ -107,7 +107,7 @@ class AboutSection extends StatelessWidget {
         SizedBox(height: 10),
         Row(
           children: [
-            // Icon(Icons.check_circle, color: Colors.blueAccent),
+            Icon(Icons.check_circle, color: Colors.blueAccent),
             SizedBox(width: 10),
             Expanded(
               child: Text(

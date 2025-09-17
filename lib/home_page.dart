@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             const DrawerHeader(
               decoration: BoxDecoration(color: Color.fromARGB(255, 40, 40, 40)),
               child: Text(
-                'Navigation',
+                ' ',
                 style: TextStyle(color: Colors.white, fontSize: 24),
               ),
             ),
