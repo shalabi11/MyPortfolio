@@ -47,8 +47,8 @@ class _ProjectCardState extends State<ProjectCard> {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Colors.black.withOpacity(0.8),
-                          Colors.black.withOpacity(0.4),
+                          Colors.black.withOpacity(0.7),
+                          Colors.black.withOpacity(0.1),
                         ],
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
@@ -56,7 +56,6 @@ class _ProjectCardState extends State<ProjectCard> {
                     ),
                   ),
                 ),
-                // الطبقة 3: المحتوى المتغير (يبقى كما هو)
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
@@ -85,10 +84,6 @@ class _ProjectCardState extends State<ProjectCard> {
     );
   }
 
-  // ... باقي الدوال (_buildDescriptionView, _buildDetailsView) تبقى كما هي
-  // ...
-
-  // دالة لفتح الروابط
   Future<void> _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
     if (!await launchUrl(uri)) {
@@ -96,21 +91,19 @@ class _ProjectCardState extends State<ProjectCard> {
     }
   }
 
-  // ويدجت لعرض الوصف (الحالة الافتراضية)
   Widget _buildDescriptionView() {
     return Text(
       widget.project.description,
-      key: const ValueKey('description'), // مفتاح لـ AnimatedSwitcher
+      key: const ValueKey('description'),
       style: const TextStyle(color: Colors.white70, fontSize: 16),
       maxLines: 4,
       overflow: TextOverflow.ellipsis,
     );
   }
 
-  // ويدجت لعرض التفاصيل (حالة التمرير/النقر)
   Widget _buildDetailsView() {
     return Column(
-      key: const ValueKey('details'), // مفتاح لـ AnimatedSwitcher
+      key: const ValueKey('details'),
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -139,7 +132,10 @@ class _ProjectCardState extends State<ProjectCard> {
               OutlinedButton.icon(
                 icon: const Icon(Icons.visibility, size: 18),
                 label: const Text('View Project'),
-                onPressed: () => _launchURL(widget.project.galleryUrl!),
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  '/project?title=${widget.project.title}',
+                ),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.white,
                   side: const BorderSide(color: Colors.white),

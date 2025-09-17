@@ -93,7 +93,10 @@ class ProjectListItem extends StatelessWidget {
                         OutlinedButton.icon(
                           icon: const Icon(Icons.visibility, size: 18),
                           label: const Text('View Project'),
-                          onPressed: () => _launchURL(project.galleryUrl!),
+                          onPressed: () => Navigator.pushNamed(
+                            context,
+                            '/project?title=${project.title}',
+                          ),
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Colors.white,
                             side: const BorderSide(color: Colors.white),

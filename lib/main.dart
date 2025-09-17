@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_portfolio/home_page.dart';
+import 'package:my_portfolio/app_router.dart';
+import 'package:my_portfolio/pages/home_page.dart';
 
 void main() {
   runApp(const MyPortfolio());
@@ -21,8 +22,8 @@ class MyPortfolio extends StatelessWidget {
           Theme.of(context).textTheme,
         ).apply(bodyColor: Colors.white),
       ),
-
-      home: const HomePage(),
+      onGenerateRoute: AppRouter.generateRoute,
+      initialRoute: AppRouter.homeRoute,
     );
   }
 }
