@@ -134,7 +134,8 @@ class _ProjectCardState extends State<ProjectCard> {
                 label: const Text('View Project'),
                 onPressed: () => Navigator.pushNamed(
                   context,
-                  '/project?title=${widget.project.title}',
+                  '/project', // اسم المسار فقط
+                  arguments: widget.project, // تمرير البيانات هنا
                 ),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.white,

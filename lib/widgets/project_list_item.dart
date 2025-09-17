@@ -95,7 +95,8 @@ class ProjectListItem extends StatelessWidget {
                           label: const Text('View Project'),
                           onPressed: () => Navigator.pushNamed(
                             context,
-                            '/project?title=${project.title}',
+                            '/project', // اسم المسار فقط
+                            arguments: project, // تمرير البيانات هنا
                           ),
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Colors.white,
