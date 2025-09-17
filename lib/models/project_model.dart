@@ -6,6 +6,7 @@ class Project {
   final String description;
   final String projectUrl;
   final List<String> technologies;
+  final String? galleryUrl;
 
   Project({
     required this.technologies,
@@ -13,5 +14,6 @@ class Project {
     required this.title,
     required this.description,
     required this.projectUrl,
+    required this.galleryUrl,
   });
 }

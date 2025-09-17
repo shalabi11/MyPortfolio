@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart'; // To use for the CV button
+import 'package:url_launcher/url_launcher.dart';
 
 class HeroSection extends StatelessWidget {
   final VoidCallback onViewMyWorkTap;
   const HeroSection({super.key, required this.onViewMyWorkTap});
 
-  // Helper function to launch URLs
   Future<void> _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
     if (!await launchUrl(uri)) {
@@ -37,7 +36,6 @@ class HeroSection extends StatelessWidget {
             style: TextStyle(fontSize: 20, color: Colors.white70),
           ),
 
-          // --- NEW ADDITION: Professional Tagline ---
           const SizedBox(height: 15),
           Text(
             'I build robust software solutions and high-performance applications.',
@@ -45,10 +43,8 @@ class HeroSection extends StatelessWidget {
             style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
           ),
 
-          // -----------------------------------------
           const SizedBox(height: 30),
 
-          // --- NEW ADDITION: Button Row ---
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -67,7 +63,6 @@ class HeroSection extends StatelessWidget {
                 icon: const Icon(Icons.download, size: 18),
                 label: const Text('Download CV'),
                 onPressed: () {
-                  // ▼▼▼ IMPORTANT: Place your CV link here ▼▼▼
                   _launchURL(
                     'https://drive.google.com/file/d/1JN1y9jAPPBE7us0bItflPh9Tj6Ks0VHm/view?usp=drivesdk',
                   );
@@ -83,7 +78,6 @@ class HeroSection extends StatelessWidget {
               ),
             ],
           ),
-          // ------------------------------
         ],
       ),
     );

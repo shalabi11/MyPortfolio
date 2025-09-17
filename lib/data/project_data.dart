@@ -9,9 +9,20 @@ final List<Project> projects = [
     description: 'A short description for the first amazing project I built.',
     projectUrl: 'https://github.com/shalabi11/faculity_app1',
     technologies: ['Flutter', 'Firebase', 'Bloc', 'dart', ''],
+    galleryUrl: 'https://github.com/shalabi11/faculity_app1',
   ),
   Project(
     imagePath: 'assets/images/Picture1.png',
+    title: 'Project Two Title',
+    description:
+        'Description for the second project, showcasing different skills and technologies.',
+    galleryUrl: 'https://github.com/shalabi11/faculity_app1',
+    projectUrl: 'https://github.com/shalabi11/faculity_app1',
+    technologies: ['Flutter', 'Firebase', 'Bloc'],
+  ),
+  Project(
+    imagePath: 'assets/images/Picture1.png',
+    galleryUrl: 'https://github.com/shalabi11/faculity_app1',
     title: 'Project Two Title',
     description:
         'Description for the second project, showcasing different skills and technologies.',
@@ -23,14 +34,7 @@ final List<Project> projects = [
     title: 'Project Two Title',
     description:
         'Description for the second project, showcasing different skills and technologies.',
-    projectUrl: 'https://github.com/shalabi11/faculity_app1',
-    technologies: ['Flutter', 'Firebase', 'Bloc'],
-  ),
-  Project(
-    imagePath: 'assets/images/Picture1.png',
-    title: 'Project Two Title',
-    description:
-        'Description for the second project, showcasing different skills and technologies.',
+    galleryUrl: 'https://github.com/shalabi11/faculity_app1',
     projectUrl: 'https://github.com/shalabi11/faculity_app1',
     technologies: ['Flutter', 'Firebase', 'Bloc'],
   ),

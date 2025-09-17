@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // سنحتاجه للأيقونات
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/project_model.dart';
@@ -22,111 +22,120 @@ class _ProjectCardState extends State<ProjectCard> {
     }
   }
 
-  IconData _getTechnologyIcon(String technology) {
-    switch (technology.toLowerCase()) {
-      case 'flutter':
-        return FontAwesomeIcons.mobileScreen;
-      case 'firebase':
-        return FontAwesomeIcons.fire;
-      case 'dart':
-        return FontAwesomeIcons.code;
-      case 'bloc':
-        return FontAwesomeIcons.cubes;
-      case 'supabase':
-        return FontAwesomeIcons.database;
-      default:
-        return FontAwesomeIcons.microchip;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => setState(() => _isHovered = !_isHovered),
       onHover: (isHovering) => setState(() => _isHovered = isHovering),
       child: Card(
+        clipBehavior: Clip.antiAlias,
         elevation: _isHovered ? 10 : 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Image.asset(
-                    widget.project.imagePath,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(widget.project.imagePath, fit: BoxFit.cover),
+            ),
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.black.withOpacity(0.8),
+                      Colors.black.withOpacity(0.4),
+                    ],
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
                   ),
-                  AnimatedOpacity(
-                    duration: const Duration(milliseconds: 300),
-                    opacity: _isHovered ? 1.0 : 0.0,
-                    child: Container(
-                      width: double.infinity,
-                      height: 175,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.7),
-                      ),
-
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.link),
-                            color: Colors.white,
-                            iconSize: 50,
-                            onPressed: () =>
-                                _launchURL(widget.project.projectUrl),
-                          ),
-                          const SizedBox(height: 10),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: widget.project.technologies
-                                .map(
-                                  (tech) => Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0,
-                                    ),
-                                    child: Icon(
-                                      _getTechnologyIcon(tech),
-                                      color: Colors.white,
-                                      size: 24,
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                          ),
-                        ],
-                      ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.project.title,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
+                  ),
+                  const SizedBox(height: 10),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    transitionBuilder: (child, animation) {
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                    child: _isHovered
+                        ? _buildDetailsView()
+                        : _buildDescriptionView(),
                   ),
                 ],
               ),
-              const SizedBox(height: 15),
-              Text(
-                widget.project.title,
-                style: GoogleFonts.montserrat(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Expanded(
-                child: Text(
-                  widget.project.description,
-                  style: const TextStyle(color: Colors.white70),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 3,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+
+  Widget _buildDescriptionView() {
+    return Text(
+      widget.project.description,
+      key: const ValueKey('description'),
+      style: const TextStyle(color: Colors.white70, fontSize: 16),
+      maxLines: 4,
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+
+  Widget _buildDetailsView() {
+    return Column(
+      key: const ValueKey('details'),
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: 8.0,
+          runSpacing: 8.0,
+          children: widget.project.technologies.map((tech) {
+            return Chip(
+              label: Text(tech),
+              backgroundColor: Colors.blueGrey[700],
+              labelStyle: const TextStyle(color: Colors.white),
+            );
+          }).toList(),
+        ),
+        const SizedBox(height: 20),
+        // ▼▼▼ هنا الإصلاح ▼▼▼
+        Wrap(
+          // استخدام Wrap بدلاً من Row
+          spacing: 8.0, // مسافة أفقية بين الأزرار
+          runSpacing: 10.0, // مسافة عمودية في حال نزول زر لسطر جديد
+          children: [
+            ElevatedButton.icon(
+              icon: const FaIcon(FontAwesomeIcons.github, size: 16),
+              label: const Text('GitHub'),
+              onPressed: () => _launchURL(widget.project.projectUrl),
+            ),
+            if (widget.project.galleryUrl != null)
+              OutlinedButton.icon(
+                icon: const Icon(Icons.visibility, size: 18),
+                label: const Text('View Project'),
+                onPressed: () => _launchURL(widget.project.galleryUrl!),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  side: const BorderSide(color: Colors.white),
+                ),
+              ),
+          ],
+        ),
+        // ▲▲▲ انتهى الإصلاح ▲▲▲
+      ],
     );
   }
 }
