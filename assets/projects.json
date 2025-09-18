@@ -1,31 +1,101 @@
 [
   {
-    "title": "Faculity App",
-    "description": "An application for university students to view schedules, news, and notifications.",
+    "title": "Automation of Faculty of Informatics",
+    "description": "A mobile application that automates academic and administrative processes in the Faculty of Informatics. It connects students, teachers, and administrative staff in one digital platform.",
     "projectUrl": "https://github.com/shalabi11/faculity_app1",
     "galleryUrl": "YOUR_LIVE_DEMO_OR_GALLERY_URL_HERE",
-    "appDistributionUrl": "https://appdistribution.firebase.dev/i/8348b71019e7f863", 
+    "appDistributionUrl": "https://appdistribution.firebase.dev/i/8348b71019e7f863",
     "technologies": [
       "Flutter",
-      "Firebase",
+      "Laravel",
+      "MySQL",
       "Bloc"
     ],
     "features": [
       {
-        "title": "User Authentication & Secure Access",
-        "description": "Implemented a complete authentication system using Firebase, providing secure login, registration, and password recovery functionalities to protect user data.",
+        "title": "Login Screen",
+        "description": "Secure login for all users (students, teachers, admin). Requires email, password, and role selection to access the system.",
         "imagePaths": [
-          "assets/images/Picture1.png",
-          "assets/images/Picture1.png",
-          "assets/images/Picture1.png"
-     
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/login.png"
         ]
       },
       {
-        "title": "Dynamic Schedules & Real-time Updates",
-        "description": "Developed a feature to display dynamic university schedules fetched from a live database. Users receive real-time updates and notifications about any changes.",
+        "title": "Admin Dashboard",
+        "description": "Main control panel for administrators to manage faculty-wide operations and monitor system activities.",
         "imagePaths": [
-          "assets/images/Picture1.png"
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/admin.png"
+        ]
+      },
+      {
+        "title": "Teacher Interfaces",
+        "description": "Teachers can manage schedules, upload materials, and publish announcements.",
+        "imagePaths": [
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/teacher1.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/teacher2.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/teacher3.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/teacher4.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/teacher5.png"
+        ]
+      },
+      {
+        "title": "Dean Dashboard",
+        "description": "Screens for the Dean to view faculty overview, manage staff, and post official announcements.",
+        "imagePaths": [
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean2.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean3.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean4.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean5.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean6.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean7.png"
+        ]
+      },
+      {
+        "title": "Student Affairs",
+        "description": "Staff screens to manage student records, update information, and track progress.",
+        "imagePaths": [
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/student_Affairs1.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/student_Affairs2.png"
+        ]
+      },
+      {
+        "title": "Exams Management",
+        "description": "Screens to manage exam schedules, assign rooms, and handle exam logistics.",
+        "imagePaths": [
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/exam.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/exam1.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/exam2.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/exam3.png"
+        ]
+      },
+      {
+        "title": "Head of Exams",
+        "description": "Dedicated screens for the head of exams to input grades, verify, and publish results.",
+        "imagePaths": [
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/head_of_exam.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/head_of_exam2.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/head1.png"
+        ]
+      },
+      {
+        "title": "Zatia (Assistant Interfaces)",
+        "description": "Screens for assistants (معيدين) to support courses and manage practical sessions.",
+        "imagePaths": [
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia2.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia3.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia4.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia5.png"
+        ]
+      },
+      {
+        "title": "Other Screenshots",
+        "description": "Additional app screenshots showcasing different parts of the system.",
+        "imagePaths": [
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/Picture1.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/Screenshot%202025-09-02%20003028.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/Screenshot%202025-09-02%20013803.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/Screenshot%202025-09-02%20013823.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/Screenshot%202025-09-02%20014350.png"
         ]
       }
     ]
