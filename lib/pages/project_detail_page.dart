@@ -114,11 +114,11 @@ class ProjectDetailPage extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   // ▼▼▼ هذا هو التعديل ▼▼▼
-                  child: FadeInImage(
-                    placeholder: MemoryImage(kTransparentImage),
-                    image: AssetImage(imagePaths[index]),
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: imagePaths[index],
                     fit: BoxFit
-                        .cover, // يمكن أن يكون contain أو cover حسب الأفضل لصورك
+                        .contain, // استخدم contain هنا لضمان ظهور الصورة كاملة
                   ),
                   // ▲▲▲ انتهى التعديل ▲▲▲
                 ),

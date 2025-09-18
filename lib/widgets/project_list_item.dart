@@ -46,10 +46,9 @@ class ProjectListItem extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: FadeInImage(
-                    // <-- 2. استبدل Image.asset بهذا
-                    placeholder: MemoryImage(kTransparentImage),
-                    image: AssetImage(mainImagePath),
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: mainImagePath,
                     fit: BoxFit.contain,
                   ),
                 ),

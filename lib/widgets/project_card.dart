@@ -41,12 +41,9 @@ class _ProjectCardState extends State<ProjectCard> {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: FadeInImage(
-                    // <-- 2. استبدل Image.asset بهذا
-                    placeholder: MemoryImage(
-                      kTransparentImage,
-                    ), // 3. الصورة البديلة الشفافة
-                    image: AssetImage(mainImagePath), // 4. صورتك الحقيقية
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage, // الصورة البديلة
+                    image: mainImagePath, // رابط الصورة من الإنترنت
                     fit: BoxFit.cover,
                   ),
                 ),
