@@ -84,20 +84,20 @@
           "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia2.png",
           "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia3.png",
           "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia4.png",
-          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia5.png"
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia5.png",
+          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia_dashboard.png"
         ]
       },
-      {
-        "title": "Other Screenshots",
-        "description": "Additional app screenshots showcasing different parts of the system.",
+       {
+        "title": "Student Views",
+        "description": "Various screens for the student, including dashboard, schedule, exams, and profile.",
         "imagePaths": [
-          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/Picture1.png",
-          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/Screenshot%202025-09-02%20003028.png",
-          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/Screenshot%202025-09-02%20013803.png",
-          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/Screenshot%202025-09-02%20013823.png",
-          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/Screenshot%202025-09-02%20014350.png"
+            "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/student_dashboard.png",
+            "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/student_schedual.png",
+            "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/student_exam.png",
+            "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/student_profil.png"
         ]
-      }
+       }
     ]
   }
 ]
