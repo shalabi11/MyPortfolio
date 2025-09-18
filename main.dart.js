@@ -21887,16 +21887,15 @@ EO:function EO(a){this.a=a},
 pv:function pv(a,b,c){this.a=a
 this.b=b
 this.c=c},
-auC(a){var s,r,q,p,o,n,m=t.kc.a(a.i(0,"features"))
-if(m==null)m=[]
-s=J.ll(m,new A.a08(),t.Vy)
+auC(a){var s,r,q,p,o,n=t.kc.a(a.i(0,"features"))
+if(n==null)n=[]
+s=J.ll(n,new A.a08(),t.Vy)
 r=A.U(s,s.$ti.h("ao.E"))
 s=A.bD(a.i(0,"title"))
 q=A.bD(a.i(0,"description"))
-p=A.c4(a.i(0,"appDistributionUrl"))
-o=A.bD(a.i(0,"projectUrl"))
-n=A.c4(a.i(0,"galleryUrl"))
-return new A.h0(s,q,o,A.fV(t.j.a(a.i(0,"technologies")),!0,t.N),n,r,p)},
+p=A.bD(a.i(0,"projectUrl"))
+o=A.c4(a.i(0,"galleryUrl"))
+return new A.h0(s,q,p,A.fV(t.j.a(a.i(0,"technologies")),!0,t.N),o,r,A.c4(a.i(0,"appDistributionUrl")))},
 h0:function h0(a,b,c,d,e,f,g){var _=this
 _.a=a
 _.b=b
