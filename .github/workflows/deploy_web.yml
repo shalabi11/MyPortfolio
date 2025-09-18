@@ -11,32 +11,40 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          flutter-version: "3.35.4"
 
       - name: Get Flutter dependencies
         run: flutter pub get
 
       - name: Build Web
-        run: flutter build web --release --web-renderer html --base-href /${{ github.event.repository.name }}/
+        run: flutter build web --release --base-href /MyPortfolio/
+        env:
+          FLUTTER_WEB_RENDERER: html
 
-      # ▼▼▼ هذا هو التعديل الرئيسي ▼▼▼
-      # سيقوم بضغط الصور الموجودة في مجلد البناء النهائي
-      - name: Compress Images
-        uses: calibreapp/image-actions@main
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          compressOnly: true # يخبر الأداة بالضغط فقط وعدم التحويل
-          files: 'build/web/assets/images/**/*.{png,jpeg,jpg}'
+      # 🔹 ضغط الصور (WebP + النسخ الأصلية تبقى)
+      - name: Optimize Images
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webp
+          find build/web/assets -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \) -exec cwebp -q 80 {} -o {}.webp \;
 
-      # ▲▲▲ انتهى التعديل ▲▲▲
+      # 🔹 ضغط ملفات HTML, CSS, JS
+      - name: Optimize assets (HTML, CSS, JS)
+        run: |
+          sudo apt-get install -y brotli
+          find build/web -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' \) -exec gzip -9 -k {} \;
+          find build/web -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' \) -exec brotli -9 {} \;
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PAT_TOKEN }}
           publish_dir: ./build/web
+          publish_branch: gh-pages
