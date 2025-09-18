@@ -41,12 +41,9 @@
         "title": "Dean Dashboard",
         "description": "Screens for the Dean to view faculty overview, manage staff, and post official announcements.",
         "imagePaths": [
-          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean.png",
           "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean2.png",
           "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean3.png",
-          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean4.png",
           "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean5.png",
-          "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean6.png",
           "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/dean7.png"
         ]
       },
@@ -78,8 +75,8 @@
         ]
       },
       {
-        "title": "Zatia (Assistant Interfaces)",
-        "description": "Screens for assistants (معيدين) to support courses and manage practical sessions.",
+    "title": "Zatia (Assistant Management)",
+        "description": "This module is dedicated to managing data for assistants and professors, allowing for efficient storage and addition of their information, alongside supporting courses and practical sessions.",
         "imagePaths": [
           "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia2.png",
           "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/zatia3.png",
