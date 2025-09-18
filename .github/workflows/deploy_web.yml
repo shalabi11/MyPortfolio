@@ -23,6 +23,11 @@ jobs:
       - name: Get Flutter dependencies
         run: flutter pub get
 
+      - name: Compress assets
+        run: |
+          npm install -g imagemin-cli imagemin-mozjpeg imagemin-pngquant
+          npx imagemin assets/images/* --plugin=pngquant --plugin=mozjpeg --out-dir=assets/images
+      
       - name: Build web (optimized)
         run: flutter build web --release --base-href /MyPortfolio/
 
