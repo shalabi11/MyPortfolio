@@ -4,6 +4,7 @@
     "description": "An application for university students to view schedules, news, and notifications.",
     "projectUrl": "https://github.com/shalabi11/faculity_app1",
     "galleryUrl": "YOUR_LIVE_DEMO_OR_GALLERY_URL_HERE",
+    "appDistributionUrl": "https://appdistribution.firebase.dev/i/8348b71019e7f863", 
     "technologies": [
       "Flutter",
       "Firebase",

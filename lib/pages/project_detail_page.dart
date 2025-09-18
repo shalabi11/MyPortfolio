@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../models/project_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:transparent_image/transparent_image.dart'; // <-- أضف هذا السطر
 
 class ProjectDetailPage extends StatelessWidget {
   final Project project;
@@ -112,7 +113,14 @@ class ProjectDetailPage extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 10.0), // مسافة بين الصور
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(imagePaths[index]),
+                  // ▼▼▼ هذا هو التعديل ▼▼▼
+                  child: FadeInImage(
+                    placeholder: MemoryImage(kTransparentImage),
+                    image: AssetImage(imagePaths[index]),
+                    fit: BoxFit
+                        .cover, // يمكن أن يكون contain أو cover حسب الأفضل لصورك
+                  ),
+                  // ▲▲▲ انتهى التعديل ▲▲▲
                 ),
               );
             },
@@ -173,7 +181,17 @@ class ProjectDetailPage extends StatelessWidget {
                   foregroundColor: Colors.white,
                   side: const BorderSide(color: Colors.white),
                 ),
-              ),
+              ), // في lib/widgets/project_list_item.dart
+            // if (project.appDistributionUrl != null)
+            OutlinedButton.icon(
+              icon: const Icon(Icons.phone_android, size: 18),
+              label: const Text('Download Beta'), // تغيير النص
+              onPressed: () => _launchURL(
+                project.appDistributionUrl ??
+                    'https://appdistribution.firebase.dev/i/8348b71019e7f863',
+              ), // استخدام الرابط الجديد
+              style: OutlinedButton.styleFrom(/* ... */),
+            ),
           ],
         ),
       ],

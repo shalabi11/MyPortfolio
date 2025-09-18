@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/project_model.dart';
+import 'package:transparent_image/transparent_image.dart'; // <-- أضف هذا السطر
 
 class ProjectCard extends StatefulWidget {
   final Project project;
@@ -40,8 +41,12 @@ class _ProjectCardState extends State<ProjectCard> {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: Image.asset(
-                    mainImagePath, // <-- استخدام المسار الصحيح
+                  child: FadeInImage(
+                    // <-- 2. استبدل Image.asset بهذا
+                    placeholder: MemoryImage(
+                      kTransparentImage,
+                    ), // 3. الصورة البديلة الشفافة
+                    image: AssetImage(mainImagePath), // 4. صورتك الحقيقية
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -50,8 +55,8 @@ class _ProjectCardState extends State<ProjectCard> {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Colors.black.withOpacity(0.8),
-                          Colors.black.withOpacity(0.4),
+                          Colors.black.withOpacity(0.7),
+                          Colors.black.withOpacity(0.1),
                         ],
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,

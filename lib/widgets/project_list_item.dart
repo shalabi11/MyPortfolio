@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/project_model.dart';
+import 'package:transparent_image/transparent_image.dart'; // <-- أضف هذا السطر
 
 class ProjectListItem extends StatelessWidget {
   final Project project;
@@ -45,8 +46,10 @@ class ProjectListItem extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    mainImagePath, // <-- استخدام المسار الصحيح
+                  child: FadeInImage(
+                    // <-- 2. استبدل Image.asset بهذا
+                    placeholder: MemoryImage(kTransparentImage),
+                    image: AssetImage(mainImagePath),
                     fit: BoxFit.contain,
                   ),
                 ),

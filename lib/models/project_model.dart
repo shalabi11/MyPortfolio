@@ -9,10 +9,11 @@ class Project {
   final List<String> technologies;
   final String? galleryUrl;
   final List<ProjectFeature> features;
+  final String? appDistributionUrl;
 
   Project({
     this.technologies = const [],
-
+    this.appDistributionUrl,
     required this.title,
     required this.description,
     required this.projectUrl,
@@ -28,6 +29,7 @@ class Project {
     return Project(
       title: json['title'] as String,
       description: json['description'] as String,
+      appDistributionUrl: json['appDistributionUrl'] as String?,
       projectUrl: json['projectUrl'] as String,
       galleryUrl: json['galleryUrl'] as String?,
       technologies: List<String>.from(json['technologies'] as List),
