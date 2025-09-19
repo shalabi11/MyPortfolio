@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:my_portfolio/config/personal_data.dart';
+import 'package:my_portfolio/utils/url_launcher_util.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
-  Future<void> _launchURL(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +13,7 @@ class ContactSection extends StatelessWidget {
       color: Colors.black,
       child: Column(
         children: [
-          const Text(
+          const SelectableText(
             'Get in Touch',
             style: TextStyle(
               fontSize: 32,
@@ -27,7 +22,7 @@ class ContactSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const Text(
+          const SelectableText(
             'Feel free to reach out for collaborations or just a friendly chat!',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, color: Colors.white70),
@@ -35,13 +30,12 @@ class ContactSection extends StatelessWidget {
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {
-              // جهزنا رابط الإيميل مع موضوع الرسالة
               String emailUri =
-                  'mailto:alshalabi311@gmail.com?subject=Contact%20from%20your%20Portfolio';
-              _launchURL(emailUri);
+                  'mailto:${PersonalData.contactEmail}?subject=Contact%20from%20your%20Portfolio';
+              launchURL(emailUri);
             },
             child: Text(
-              'alshalabi311@gmail.com',
+              PersonalData.contactEmail,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -50,44 +44,33 @@ class ContactSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
                 icon: const FaIcon(FontAwesomeIcons.github),
-                onPressed: () {
-                  _launchURL('https://github.com/shalabi11');
-                },
+                onPressed: () => launchURL(PersonalData.githubUrl),
                 iconSize: 30,
                 color: Colors.white,
               ),
               const SizedBox(width: 20),
               IconButton(
                 icon: const FaIcon(FontAwesomeIcons.linkedin),
-                onPressed: () {
-                  _launchURL(
-                    'https://www.linkedin.com/in/ibrahim-al-shalabi-8a2b0a268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-                  );
-                },
+                onPressed: () => launchURL(PersonalData.linkedinUrl),
                 iconSize: 30,
                 color: Colors.white,
               ),
               const SizedBox(width: 20),
               IconButton(
                 icon: const FaIcon(FontAwesomeIcons.facebook),
-                onPressed: () {
-                  _launchURL('https://www.facebook.com/share/1LaWB4aUw7/');
-                },
+                onPressed: () => launchURL(PersonalData.facebookUrl),
                 iconSize: 30,
                 color: Colors.white,
               ),
               const SizedBox(width: 20),
               IconButton(
                 icon: const FaIcon(FontAwesomeIcons.whatsapp),
-                onPressed: () {
-                  _launchURL('https://wa.me/qr/GHSDHTGADMT6P1');
-                },
+                onPressed: () => launchURL(PersonalData.whatsappUrl),
                 iconSize: 30,
                 color: Colors.white,
               ),

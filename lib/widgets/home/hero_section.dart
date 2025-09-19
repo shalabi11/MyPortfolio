@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:my_portfolio/config/personal_data.dart';
+import 'package:my_portfolio/utils/url_launcher_util.dart';
 
 class HeroSection extends StatelessWidget {
   final VoidCallback onViewMyWorkTap;
   const HeroSection({super.key, required this.onViewMyWorkTap});
-
-  Future<void> _launchURL(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +15,8 @@ class HeroSection extends StatelessWidget {
         children: <Widget>[
           FittedBox(
             fit: BoxFit.fitWidth,
-            child: Text(
-              'Ibrahim al shalabi',
+            child: SelectableText(
+              PersonalData.name,
               style: GoogleFonts.montserrat(
                 fontSize: 35,
                 fontWeight: FontWeight.bold,
@@ -31,20 +25,17 @@ class HeroSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          const Text(
-            'Flutter Developer || Software Engineer',
+          const SelectableText(
+            PersonalData.title,
             style: TextStyle(fontSize: 20, color: Colors.white70),
           ),
-
           const SizedBox(height: 15),
-          Text(
-            'I build robust software solutions and high-performance applications.',
+          SelectableText(
+            PersonalData.description,
             textAlign: TextAlign.center,
             style: GoogleFonts.lato(fontSize: 18, color: Colors.white70),
           ),
-
           const SizedBox(height: 30),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -62,11 +53,7 @@ class HeroSection extends StatelessWidget {
               OutlinedButton.icon(
                 icon: const Icon(Icons.download, size: 18),
                 label: const Text('Download CV'),
-                onPressed: () {
-                  _launchURL(
-                    'https://drive.google.com/file/d/1JN1y9jAPPBE7us0bItflPh9Tj6Ks0VHm/view?usp=drivesdk',
-                  );
-                },
+                onPressed: () => launchURL(PersonalData.cvUrl),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(

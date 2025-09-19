@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_portfolio/utils/url_launcher_util.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../models/project_model.dart';
+import '../../models/project_model.dart';
 import 'package:transparent_image/transparent_image.dart'; // <-- أضف هذا السطر
 
 class ProjectCard extends StatefulWidget {
@@ -18,14 +19,13 @@ class _ProjectCardState extends State<ProjectCard> {
 
   @override
   Widget build(BuildContext context) {
-    // --- الإصلاح: جلب الصورة الرئيسية بشكل صحيح ---
     final bool hasFeaturesWithImages =
         widget.project.features.isNotEmpty &&
         widget.project.features.first.imagePaths.isNotEmpty;
 
     final String mainImagePath = hasFeaturesWithImages
         ? widget.project.features.first.imagePaths.first
-        : 'assets/images/Picture1.png'; // صورة احتياطية
+        : 'assets/images/Picture1.png';
 
     return InkWell(
       onTap: () => setState(() => _isHovered = !_isHovered),
@@ -42,8 +42,8 @@ class _ProjectCardState extends State<ProjectCard> {
               children: [
                 Positioned.fill(
                   child: FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage, // الصورة البديلة
-                    image: mainImagePath, // رابط الصورة من الإنترنت
+                    placeholder: kTransparentImage,
+                    image: mainImagePath,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -67,7 +67,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      SelectableText(
                         widget.project.title,
                         style: GoogleFonts.montserrat(
                           fontSize: 22,
@@ -93,20 +93,21 @@ class _ProjectCardState extends State<ProjectCard> {
     );
   }
 
-  Future<void> _launchURL(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      throw 'Could not launch $url';
-    }
-  }
+  // Future<void> _launchURL(String url) async {
+  //   final Uri uri = Uri.parse(url);
+  //   if (!await launchUrl(uri)) {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   Widget _buildDescriptionView() {
-    return Text(
+    return SelectableText(
       widget.project.description,
       key: const ValueKey('description'),
       style: const TextStyle(color: Colors.white70, fontSize: 16),
       maxLines: 4,
-      overflow: TextOverflow.ellipsis,
+
+      // overflow: TextOverflow.ellipsis,
     );
   }
 
@@ -121,7 +122,7 @@ class _ProjectCardState extends State<ProjectCard> {
           runSpacing: 8.0,
           children: widget.project.technologies.map((tech) {
             return Chip(
-              label: Text(tech),
+              label: SelectableText(tech),
               backgroundColor: Colors.blueGrey[700],
               labelStyle: const TextStyle(color: Colors.white),
             );
@@ -135,19 +136,15 @@ class _ProjectCardState extends State<ProjectCard> {
             ElevatedButton.icon(
               icon: const FaIcon(FontAwesomeIcons.github, size: 16),
               label: const Text('GitHub'),
-              onPressed: () => _launchURL(widget.project.projectUrl),
+              onPressed: () => launchURL(widget.project.projectUrl),
             ),
             if (widget.project.galleryUrl != null)
               OutlinedButton.icon(
                 icon: const Icon(Icons.visibility, size: 18),
                 label: const Text('View Project'),
                 onPressed: () async {
-                  // <-- 1. اجعل الدالة async
-                  await Future.delayed(
-                    const Duration(milliseconds: 50),
-                  ); // <-- 2. أضف التأخير
+                  await Future.delayed(const Duration(milliseconds: 50));
                   if (context.mounted) {
-                    // <-- 3. تأكد أن الويدجت ما زال موجودًا
                     Navigator.pushNamed(
                       context,
                       '/project',

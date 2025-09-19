@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/widgets/about_section.dart';
-import 'package:my_portfolio/widgets/contact_section.dart';
-import 'package:my_portfolio/widgets/custom_app_bar.dart';
-import 'package:my_portfolio/widgets/footer.dart';
-import 'package:my_portfolio/widgets/hero_section.dart';
-import 'package:my_portfolio/widgets/project_section.dart';
+import 'package:my_portfolio/widgets/about/about_section.dart';
+import 'package:my_portfolio/widgets/contact/contact_section.dart';
+import 'package:my_portfolio/widgets/home/custom_app_bar.dart';
+import 'package:my_portfolio/widgets/shared/footer.dart';
+import 'package:my_portfolio/widgets/home/hero_section.dart';
+import 'package:my_portfolio/widgets/project/project_section.dart';
 import 'package:animate_do/animate_do.dart';
 
 class HomePage extends StatefulWidget {
@@ -47,14 +47,17 @@ class _HomePageState extends State<HomePage> {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(color: Color.fromARGB(255, 40, 40, 40)),
-              child: Text(
+              child: SelectableText(
                 ' ',
                 style: TextStyle(color: Colors.white, fontSize: 24),
               ),
             ),
             ListTile(
               leading: const Icon(Icons.home, color: Colors.white),
-              title: const Text('Home', style: TextStyle(color: Colors.white)),
+              title: const SelectableText(
+                'Home',
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.of(context).pop();
                 _scrollToSection(_heroKey);
@@ -62,7 +65,7 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               leading: const Icon(Icons.apps, color: Colors.white),
-              title: const Text(
+              title: const SelectableText(
                 'Projects',
                 style: TextStyle(color: Colors.white),
               ),
@@ -73,7 +76,10 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               leading: const Icon(Icons.person, color: Colors.white),
-              title: const Text('About', style: TextStyle(color: Colors.white)),
+              title: const SelectableText(
+                'About',
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.of(context).pop();
                 _scrollToSection(_aboutKey);
@@ -81,7 +87,7 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               leading: const Icon(Icons.contact_mail, color: Colors.white),
-              title: const Text(
+              title: const SelectableText(
                 'Contact',
                 style: TextStyle(color: Colors.white),
               ),

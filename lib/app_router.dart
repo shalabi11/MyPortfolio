@@ -10,7 +10,6 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case projectDetailRoute:
-        // استقبل المشروع كاملاً كـ argument
         final project = settings.arguments as Project;
         return MaterialPageRoute(
           builder: (_) => ProjectDetailPage(project: project),

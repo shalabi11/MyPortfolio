@@ -11,7 +11,7 @@ class Footer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       color: Colors.black,
       child: Center(
-        child: Text(
+        child: SelectableText(
           '© ${DateTime.now().year} Ibrahim Al Shalabi • Built with Flutter',
           style: GoogleFonts.lato(color: Colors.white70, fontSize: 14),
         ),

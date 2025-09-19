@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: FittedBox(
         fit: BoxFit.fitWidth,
         child: Text(
-          'Ibrahim al shalabi',
+          'Portfolio',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -52,7 +52,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              // === الزر الذي كان مفقودًا ===
               TextButton(
                 onPressed: onAboutTap,
                 child: const Text(
@@ -60,7 +59,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              // ============================
               const SizedBox(width: 10),
               TextButton(
                 onPressed: onContactTap,

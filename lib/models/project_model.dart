@@ -1,5 +1,3 @@
-// lib/models/project_model.dart
-
 import 'package:my_portfolio/models/project_feature_model.dart';
 
 class Project {

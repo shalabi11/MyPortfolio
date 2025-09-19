@@ -1,5 +1,3 @@
-// lib/models/project_feature_model.dart
-
 class ProjectFeature {
   final String title;
   final String description;
