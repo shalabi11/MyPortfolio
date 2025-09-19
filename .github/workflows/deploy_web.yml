@@ -28,14 +28,12 @@ jobs:
         env:
           FLUTTER_WEB_RENDERER: html
 
-      # 🔹 ضغط الصور (WebP + النسخ الأصلية تبقى)
       - name: Optimize Images
         run: |
           sudo apt-get update
           sudo apt-get install -y webp
           find build/web/assets -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \) -exec cwebp -q 80 {} -o {}.webp \;
 
-      # 🔹 ضغط ملفات HTML, CSS, JS
       - name: Optimize assets (HTML, CSS, JS)
         run: |
           sudo apt-get install -y brotli
