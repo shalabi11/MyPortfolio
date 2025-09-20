@@ -6,10 +6,14 @@
     "galleryUrl": "YOUR_LIVE_DEMO_OR_GALLERY_URL_HERE",
     "appDistributionUrl": "https://appdistribution.firebase.dev/i/3d9aed29757d9957",
     "technologies": [
-      "Flutter",
-      "Laravel",
-      "MySQL",
-      "Bloc"
+     "Flutter",     
+      "Bloc",
+      "GetIt" , 
+      "Dio" , "lottie" , 
+      "Backend : Php , Laravel , MySQL"
+      
+
+     
     ],
     "features": [
       {
