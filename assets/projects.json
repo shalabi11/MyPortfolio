@@ -101,4 +101,54 @@
        }
     ]
   }
+  ,
+  {
+    "title": "TownPulse (نبض المدينة)",
+    "description": "تطبيق جوال متكامل (Mobile Application) مبني على Flutter يهدف لربط المستخدمين بالأنشطة والفعاليات المحلية، مع تزويد المنظمين بأدوات شاملة لإنشاء الأنشطة، إدارة الحضور (Attendance Management)، وتلقي التقييمات. يتميز بنظام تحديد المواقع الجغرافية المتقدم والبحث الذكي.",
+    "projectUrl": "YOUR_TOWNPULSE_GITHUB_URL_HERE",
+    "galleryUrl": "YOUR_TOWNPULSE_LIVE_DEMO_OR_GALLERY_URL_HERE",
+    "appDistributionUrl": "YOUR_TOWNPULSE_APP_DISTRIBUTION_URL_HERE",
+    "technologies": [
+      "Flutter",
+      "Bloc/Cubit",
+      "Dio",
+      "Geolocator",
+      "Flutter Map",
+      "GoRouter",
+      "Shared Preferences",
+      "Backend (REST API)"
+    ],
+    "features": [
+      {
+        "title": "نظام اكتشاف متقدم (Discovery & Search)",
+        "description": "يوفر نظام بحث وفلترة متطور للأنشطة بناءً على الفئة، الموقع الجغرافي القريب (Geolocator) ضمن نطاق كيلومتري محدد، أو عبر كلمات مفتاحية للبحث السريع.",
+        "imagePaths": []
+      },
+      {
+        "title": "إدارة الأنشطة (CRUD)",
+        "description": "يتيح للمنظمين إنشاء نشاط شامل (العنوان، الوصف، السعة، السعر، التواريخ). ويدعم التعديل والحذف السريع للأنشطة المنشأة عبر واجهة السحب (Dismissible).",
+        "imagePaths": []
+      },
+      {
+        "title": "الخرائط وتحديد المواقع (Mapping & Geolocation)",
+        "description": "استخدام مكتبة Flutter Map لاختيار وتحديد الموقع الدقيق للنشاط على الخريطة عبر الإحداثيات، وإتاحة فتح رابط الموقع على تطبيقات الخرائط الخارجية من صفحة التفاصيل.",
+        "imagePaths": []
+      },
+      {
+        "title": "إدارة الحضور والتحقق (Attendance Management)",
+        "description": "يوفر للمنظمين واجهة لعرض قائمة الحضور والإحصائيات، مع إمكانية تحديث حالة حضور المشاركين (حاضر/متأخر/غائب). كما يمكن للمستخدمين حجز مكان أو إلغاء حضورهم من سجلهم.",
+        "imagePaths": []
+      },
+      {
+        "title": "التقييمات والمراجعات (Reviews & Ratings)",
+        "description": "نظام متكامل يتيح للمستخدمين إضافة تقييم بالنجوم وتعليقات نصية على الأنشطة، مع مراعاة صلاحيات حذف التقييمات الخاصة بهم.",
+        "imagePaths": []
+      },
+      {
+        "title": "إدارة حساب المستخدم والمصادقة (User & Auth)",
+        "description": "نظام مصادقة كامل (تسجيل الدخول، التسجيل، استعادة كلمة المرور). ويدعم إدارة الملف الشخصي لتحديث البيانات وتغيير كلمة المرور.",
+        "imagePaths": []
+      }
+    ]
+  }
 ]

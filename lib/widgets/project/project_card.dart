@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/utils/url_launcher_util.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../models/project_model.dart';
-import 'package:transparent_image/transparent_image.dart'; // <-- أضف هذا السطر
+import 'package:transparent_image/transparent_image.dart';
 
 class ProjectCard extends StatefulWidget {
   final Project project;
