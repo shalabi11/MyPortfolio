@@ -27,8 +27,7 @@ class ProjectsListView extends StatelessWidget {
             itemCount: projects.length,
             itemBuilder: (context, index) =>
                 _buildProjectCard(context, projects[index]),
-            separatorBuilder: (context, index) =>
-                const SizedBox(height: 16),
+            separatorBuilder: (context, index) => const SizedBox(height: 16),
           );
         } else {
           // Desktop view - Grid
@@ -114,10 +113,7 @@ class ProjectsListView extends StatelessWidget {
               runSpacing: 4,
               children: project.technologies.take(3).map((tech) {
                 return Chip(
-                  label: Text(
-                    tech,
-                    style: const TextStyle(fontSize: 11),
-                  ),
+                  label: Text(tech, style: const TextStyle(fontSize: 11)),
                   backgroundColor: Colors.blueGrey[700],
                   labelStyle: const TextStyle(color: Colors.white),
                   padding: const EdgeInsets.symmetric(horizontal: 6),

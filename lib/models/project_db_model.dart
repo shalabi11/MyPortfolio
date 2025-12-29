@@ -27,38 +27,39 @@ class ProjectDb {
 
   /// Convert ProjectDb to JSON for API compatibility
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'description': description,
-        'technologies': technologies,
-        'projectUrl': projectUrl,
-        'galleryUrl': galleryUrl,
-        'appDistributionUrl': appDistributionUrl,
-        'featureImagePaths': featureImagePaths,
-        'dateAdded': dateAdded.toIso8601String(),
-        'dateModified': dateModified.toIso8601String(),
-        'localImagePath': localImagePath,
-      };
+    'id': id,
+    'title': title,
+    'description': description,
+    'technologies': technologies,
+    'projectUrl': projectUrl,
+    'galleryUrl': galleryUrl,
+    'appDistributionUrl': appDistributionUrl,
+    'featureImagePaths': featureImagePaths,
+    'dateAdded': dateAdded.toIso8601String(),
+    'dateModified': dateModified.toIso8601String(),
+    'localImagePath': localImagePath,
+  };
 
   /// Create ProjectDb from JSON
   factory ProjectDb.fromJson(Map<String, dynamic> json) => ProjectDb(
-        id: json['id'] as String? ?? '',
-        title: json['title'] as String,
-        description: json['description'] as String,
-        technologies: List<String>.from(json['technologies'] as List),
-        projectUrl: json['projectUrl'] as String,
-        galleryUrl: json['galleryUrl'] as String?,
-        appDistributionUrl: json['appDistributionUrl'] as String?,
-        featureImagePaths:
-            List<String>.from(json['featureImagePaths'] as List? ?? []),
-        dateAdded: json['dateAdded'] is DateTime
-            ? json['dateAdded'] as DateTime
-            : DateTime.parse(json['dateAdded'] as String),
-        dateModified: json['dateModified'] is DateTime
-            ? json['dateModified'] as DateTime
-            : DateTime.parse(json['dateModified'] as String),
-        localImagePath: json['localImagePath'] as String?,
-      );
+    id: json['id'] as String? ?? '',
+    title: json['title'] as String,
+    description: json['description'] as String,
+    technologies: List<String>.from(json['technologies'] as List),
+    projectUrl: json['projectUrl'] as String,
+    galleryUrl: json['galleryUrl'] as String?,
+    appDistributionUrl: json['appDistributionUrl'] as String?,
+    featureImagePaths: List<String>.from(
+      json['featureImagePaths'] as List? ?? [],
+    ),
+    dateAdded: json['dateAdded'] is DateTime
+        ? json['dateAdded'] as DateTime
+        : DateTime.parse(json['dateAdded'] as String),
+    dateModified: json['dateModified'] is DateTime
+        ? json['dateModified'] as DateTime
+        : DateTime.parse(json['dateModified'] as String),
+    localImagePath: json['localImagePath'] as String?,
+  );
 
   /// Create a copy with modifications
   ProjectDb copyWith({

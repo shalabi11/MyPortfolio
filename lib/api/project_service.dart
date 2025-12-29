@@ -8,19 +8,21 @@ class ProjectService {
     try {
       // First, try to get projects from local database
       final dbProjects = ProjectDatabaseService.getAllProjects();
-      
+
       if (dbProjects.isNotEmpty) {
         // Convert database projects to Project model
         return dbProjects
-            .map((dbProject) => Project(
-                  title: dbProject.title,
-                  description: dbProject.description,
-                  projectUrl: dbProject.projectUrl,
-                  galleryUrl: dbProject.galleryUrl,
-                  technologies: dbProject.technologies,
-                  features: const [],
-                  appDistributionUrl: dbProject.appDistributionUrl,
-                ))
+            .map(
+              (dbProject) => Project(
+                title: dbProject.title,
+                description: dbProject.description,
+                projectUrl: dbProject.projectUrl,
+                galleryUrl: dbProject.galleryUrl,
+                technologies: dbProject.technologies,
+                features: const [],
+                appDistributionUrl: dbProject.appDistributionUrl,
+              ),
+            )
             .toList();
       }
 
@@ -40,8 +42,7 @@ class ProjectService {
 
   /// Load projects from JSON asset (for migration or fallback)
   Future<List<Project>> _loadProjectsFromJson() async {
-    throw UnimplementedError(
-        'JSON loading removed - using database instead');
+    throw UnimplementedError('JSON loading removed - using database instead');
   }
 }
 

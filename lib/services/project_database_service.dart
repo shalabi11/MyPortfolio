@@ -65,9 +65,7 @@ class ProjectDatabaseService {
 
   /// Update existing project
   static Future<void> updateProject(ProjectDb project) async {
-    final updatedProject = project.copyWith(
-      dateModified: DateTime.now(),
-    );
+    final updatedProject = project.copyWith(dateModified: DateTime.now());
     await _projectBox.put(project.id, updatedProject.toJson());
   }
 
@@ -86,9 +84,11 @@ class ProjectDatabaseService {
     final lowerQuery = query.toLowerCase();
     final projects = getAllProjects();
     return projects
-        .where((project) =>
-            project.title.toLowerCase().contains(lowerQuery) ||
-            project.description.toLowerCase().contains(lowerQuery))
+        .where(
+          (project) =>
+              project.title.toLowerCase().contains(lowerQuery) ||
+              project.description.toLowerCase().contains(lowerQuery),
+        )
         .toList();
   }
 
@@ -96,9 +96,11 @@ class ProjectDatabaseService {
   static List<ProjectDb> filterByTechnology(String technology) {
     final projects = getAllProjects();
     return projects
-        .where((project) =>
-            project.technologies.any((tech) =>
-                tech.toLowerCase() == technology.toLowerCase()))
+        .where(
+          (project) => project.technologies.any(
+            (tech) => tech.toLowerCase() == technology.toLowerCase(),
+          ),
+        )
         .toList();
   }
 
@@ -127,7 +129,8 @@ class ProjectDatabaseService {
 
   /// Import projects from JSON
   static Future<void> importProjectsFromJson(
-      List<Map<String, dynamic>> jsonProjects) async {
+    List<Map<String, dynamic>> jsonProjects,
+  ) async {
     for (var jsonProject in jsonProjects) {
       final project = ProjectDb.fromJson(jsonProject);
       await _projectBox.put(project.id, jsonProject);

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:my_portfolio/providers/auth_provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback onHomeTap;
@@ -23,7 +25,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       title: FittedBox(
         fit: BoxFit.fitWidth,
-        child: Text(
+        child: const Text(
           'Portfolio',
           style: TextStyle(
             color: Colors.white,
@@ -68,11 +70,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              IconButton(
-                icon: const Icon(Icons.dashboard, color: Colors.blue),
-                tooltip: 'Project Dashboard',
-                onPressed: () {
-                  Navigator.pushNamed(context, '/dashboard');
+              Consumer<AuthProvider>(
+                builder: (context, authProvider, _) {
+                  if (authProvider.isAuthenticated) {
+                    return IconButton(
+                      icon: const Icon(Icons.dashboard, color: Colors.green),
+                      tooltip: 'Project Dashboard (Admin)',
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/dashboard');
+                      },
+                    );
+                  }
+                  return IconButton(
+                    icon: const Icon(Icons.dashboard, color: Colors.blue),
+                    tooltip: 'Project Dashboard (Login Required)',
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
+                  );
                 },
               ),
               const SizedBox(width: 20),

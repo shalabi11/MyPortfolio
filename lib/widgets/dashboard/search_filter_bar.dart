@@ -87,10 +87,7 @@ class _SearchFilterBarState extends State<SearchFilterBar> {
                 padding: EdgeInsets.only(right: 12.0),
                 child: Text(
                   'Filter by Technology:',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
               ),
               if (_selectedTechnology != null)
@@ -109,29 +106,28 @@ class _SearchFilterBarState extends State<SearchFilterBar> {
                   backgroundColor: Colors.blueGrey[900],
                   labelStyle: const TextStyle(color: Colors.white),
                 ),
-              if (_selectedTechnology == null)
-                const SizedBox(width: 8),
+              if (_selectedTechnology == null) const SizedBox(width: 8),
               if (_selectedTechnology == null)
                 ...widget.technologies
                     .take(5)
-                    .map((tech) => Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: FilterChip(
-                            label: Text(tech),
-                            selected: _selectedTechnology == tech,
-                            onSelected: (selected) {
-                              setState(() {
-                                _selectedTechnology = selected ? tech : null;
-                              });
-                              widget.onTechnologyChanged(
-                                selected ? tech : null,
-                              );
-                            },
-                            backgroundColor: Colors.transparent,
-                            side: const BorderSide(color: Colors.white30),
-                            labelStyle: const TextStyle(color: Colors.white),
-                          ),
-                        )),
+                    .map(
+                      (tech) => Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: FilterChip(
+                          label: Text(tech),
+                          selected: _selectedTechnology == tech,
+                          onSelected: (selected) {
+                            setState(() {
+                              _selectedTechnology = selected ? tech : null;
+                            });
+                            widget.onTechnologyChanged(selected ? tech : null);
+                          },
+                          backgroundColor: Colors.transparent,
+                          side: const BorderSide(color: Colors.white30),
+                          labelStyle: const TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
               if (_selectedTechnology == null && widget.technologies.length > 5)
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
@@ -147,11 +143,8 @@ class _SearchFilterBarState extends State<SearchFilterBar> {
                     },
                     itemBuilder: (BuildContext context) =>
                         widget.technologies.skip(5).map((tech) {
-                      return PopupMenuItem(
-                        value: tech,
-                        child: Text(tech),
-                      );
-                    }).toList(),
+                          return PopupMenuItem(value: tech, child: Text(tech));
+                        }).toList(),
                   ),
                 ),
             ],

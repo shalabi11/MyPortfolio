@@ -8,11 +8,7 @@ class AddEditProjectDialog extends StatefulWidget {
   final ProjectDb? project;
   final Function(ProjectDb) onSave;
 
-  const AddEditProjectDialog({
-    super.key,
-    this.project,
-    required this.onSave,
-  });
+  const AddEditProjectDialog({super.key, this.project, required this.onSave});
 
   @override
   State<AddEditProjectDialog> createState() => _AddEditProjectDialogState();
@@ -34,14 +30,18 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
   void initState() {
     super.initState();
     _titleController = TextEditingController(text: widget.project?.title ?? '');
-    _descriptionController =
-        TextEditingController(text: widget.project?.description ?? '');
-    _projectUrlController =
-        TextEditingController(text: widget.project?.projectUrl ?? '');
-    _galleryUrlController =
-        TextEditingController(text: widget.project?.galleryUrl ?? '');
-    _appDistributionUrlController =
-        TextEditingController(text: widget.project?.appDistributionUrl ?? '');
+    _descriptionController = TextEditingController(
+      text: widget.project?.description ?? '',
+    );
+    _projectUrlController = TextEditingController(
+      text: widget.project?.projectUrl ?? '',
+    );
+    _galleryUrlController = TextEditingController(
+      text: widget.project?.galleryUrl ?? '',
+    );
+    _appDistributionUrlController = TextEditingController(
+      text: widget.project?.appDistributionUrl ?? '',
+    );
     _techController = TextEditingController();
     _selectedTechnologies = List.from(widget.project?.technologies ?? []);
     _selectedImagePath = widget.project?.localImagePath;
@@ -72,9 +72,9 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error picking image: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error picking image: $e')));
       }
     }
   }
@@ -109,9 +109,9 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
       return false;
     }
     if (_projectUrlController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter project URL')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please enter project URL')));
       return false;
     }
     if (_selectedTechnologies.isEmpty) {
@@ -170,9 +170,9 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error saving project: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error saving project: $e')));
       }
     } finally {
       if (mounted) {
@@ -254,10 +254,7 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: SelectableText(
                       'Selected: ${_selectedImagePath!.split('/').last}',
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                      ),
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                   ),
                 const SizedBox(height: 16),
@@ -316,7 +313,9 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: _isLoading ? null : () => Navigator.pop(context),
+                      onPressed: _isLoading
+                          ? null
+                          : () => Navigator.pop(context),
                       child: const Text('Cancel'),
                     ),
                     const SizedBox(width: 12),
@@ -326,9 +325,7 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
                           ? const SizedBox(
                               width: 20,
                               height: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                              ),
+                              child: CircularProgressIndicator(strokeWidth: 2),
                             )
                           : Text(widget.project != null ? 'Update' : 'Save'),
                     ),
@@ -364,9 +361,7 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
           maxLines: maxLines,
           decoration: InputDecoration(
             hintText: hint,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 12,
               vertical: 10,
