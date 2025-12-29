@@ -19,9 +19,13 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.35.4"
+          cache: true
 
       - name: Get Flutter dependencies
         run: flutter pub get
+
+      - name: Analyze code
+        run: flutter analyze
 
       - name: Build Web
         run: flutter build web --release --base-href /MyPortfolio/
@@ -30,20 +34,23 @@ jobs:
 
       - name: Optimize Images
         run: |
-          sudo apt-get update
-          sudo apt-get install -y webp
-          find build/web/assets -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \) -exec cwebp -q 80 {} -o {}.webp \;
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq webp
+          find build/web/assets -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \) -print0 | \
+            xargs -0 -I {} bash -c 'cwebp -q 80 "$1" -o "$1.webp"' _ {}
+          echo "Image optimization completed"
 
       - name: Optimize assets (HTML, CSS, JS)
         run: |
-          sudo apt-get install -y brotli
-          find build/web -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' \) -exec gzip -9 -k {} \;
-          find build/web -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' \) -exec brotli -9 {} \;
+          sudo apt-get install -y -qq brotli
+          find build/web -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' \) -print0 | \
+            xargs -0 -I {} bash -c 'gzip -9 -k "$1"; brotli -9 -k "$1"' _ {}
+          echo "Asset compression completed"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # رجعها لهون
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
           publish_branch: gh-pages
           allow_empty_commit: true

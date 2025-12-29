@@ -13,8 +13,16 @@ class ProjectService {
         return Project.fromJson(projectJson as Map<String, dynamic>);
       }).toList();
     } catch (e) {
-      print('Error loading projects: $e');
+      _debugPrintError('Error loading projects: $e');
       return [];
     }
   }
+}
+
+void _debugPrintError(String message) {
+  // This will only print in debug mode
+  assert(() {
+    print('[ERROR] $message');
+    return true;
+  }());
 }
