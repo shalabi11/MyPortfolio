@@ -9,6 +9,9 @@ A responsive Flutter web portfolio showcasing projects, skills, and experience.
 - 📱 **Project Showcase** - Interactive project cards with detailed feature galleries
 - 🔗 **Easy Navigation** - Smooth scroll navigation to different sections
 - 💬 **Social Links** - Direct links to GitHub, LinkedIn, Facebook, WhatsApp, and email
+- 📊 **Project Dashboard** - Manage projects without editing JSON files
+- 🗄️ **Local Database** - Projects stored locally using Hive
+- 🔍 **Search & Filter** - Find projects by name or technology stack
 
 ## Project Structure
 
@@ -104,6 +107,35 @@ Personal information, skills, and background with profile picture.
 
 ### 📧 Contact Section
 Social media links and email contact options.
+
+### 📊 Dashboard
+Easily add, edit, and delete projects without manually editing JSON files. Features include:
+- Add new projects with images and technologies
+- Edit existing projects
+- Delete projects
+- Search by title or description
+- Filter by technology stack
+- Real-time sync with portfolio page
+
+For detailed dashboard instructions, see [DASHBOARD_GUIDE.md](DASHBOARD_GUIDE.md)
+
+## Project Management System
+
+### Local Database (Hive)
+Projects are stored locally using **Hive**, providing:
+- ✅ Instant access without internet
+- ✅ Automatic persistence across app sessions
+- ✅ Full CRUD operations (Create, Read, Update, Delete)
+- ✅ Search and filtering capabilities
+- ✅ No backend server required
+
+### Project Data Model
+Each project includes:
+- Title, description, and technologies
+- Project URL and optional demo/distribution links
+- Image thumbnail (local file storage)
+- Date added and last modified timestamps
+- Unique project ID
 
 ## Performance Optimizations
 
