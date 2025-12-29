@@ -96,6 +96,18 @@ class _HomePageState extends State<HomePage> {
                 _scrollToSection(_contactKey);
               },
             ),
+            const Divider(color: Colors.white30),
+            ListTile(
+              leading: const Icon(Icons.dashboard, color: Colors.blue),
+              title: const SelectableText(
+                'Dashboard',
+                style: TextStyle(color: Colors.blue),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/dashboard');
+              },
+            ),
           ],
         ),
       ),

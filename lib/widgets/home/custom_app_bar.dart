@@ -67,6 +67,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
+              const SizedBox(width: 10),
+              IconButton(
+                icon: const Icon(Icons.dashboard, color: Colors.blue),
+                tooltip: 'Project Dashboard',
+                onPressed: () {
+                  Navigator.pushNamed(context, '/dashboard');
+                },
+              ),
               const SizedBox(width: 20),
             ],
           )

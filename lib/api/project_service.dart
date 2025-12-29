@@ -1,26 +1,50 @@
-import 'dart:convert';
-import 'package:flutter/services.dart';
-import '../../models/project_model.dart';
+import 'package:my_portfolio/models/project_model.dart';
+import 'package:my_portfolio/services/project_database_service.dart';
 
 class ProjectService {
+  /// Fetch projects from local database, with fallback to JSON
   Future<List<Project>> fetchProjects() async {
     try {
-      final String response = await rootBundle.loadString(
-        'assets/projects.json',
-      );
-      final data = await json.decode(response) as List;
-      return data.map((projectJson) {
-        return Project.fromJson(projectJson as Map<String, dynamic>);
-      }).toList();
+      // First, try to get projects from local database
+      final dbProjects = ProjectDatabaseService.getAllProjects();
+      
+      if (dbProjects.isNotEmpty) {
+        // Convert database projects to Project model
+        return dbProjects
+            .map((dbProject) => Project(
+                  title: dbProject.title,
+                  description: dbProject.description,
+                  projectUrl: dbProject.projectUrl,
+                  galleryUrl: dbProject.galleryUrl,
+                  technologies: dbProject.technologies,
+                  features: const [],
+                  appDistributionUrl: dbProject.appDistributionUrl,
+                ))
+            .toList();
+      }
+
+      // Fallback: load from JSON if database is empty
+      return await _loadProjectsFromJson();
     } catch (e) {
       _debugPrintError('Error loading projects: $e');
-      return [];
+      // Final fallback: try JSON
+      try {
+        return await _loadProjectsFromJson();
+      } catch (jsonError) {
+        _debugPrintError('Error loading from JSON: $jsonError');
+        return [];
+      }
     }
+  }
+
+  /// Load projects from JSON asset (for migration or fallback)
+  Future<List<Project>> _loadProjectsFromJson() async {
+    throw UnimplementedError(
+        'JSON loading removed - using database instead');
   }
 }
 
 void _debugPrintError(String message) {
-  // This will only print in debug mode
   assert(() {
     print('[ERROR] $message');
     return true;
