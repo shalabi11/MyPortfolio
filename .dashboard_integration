@@ -1,0 +1,8 @@
+// Integration marker file
+// Dashboard is now fully integrated with the home page
+// - main.dart: Initializes database on app startup
+// - project_service.dart: Now reads from local database with JSON fallback
+// - app_router.dart: Includes dashboard route
+// - home_page.dart: Dashboard accessible from mobile drawer
+// - custom_app_bar.dart: Dashboard accessible from desktop navbar
+// - Projects automatically sync between dashboard and home page
