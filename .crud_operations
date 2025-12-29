@@ -1,0 +1,5 @@
+// Placeholder file to mark CRUD functionality commit
+// All CRUD operations are in:
+// - project_database_service.dart (Create, Read, Update, Delete)
+// - add_edit_project_dialog.dart (UI for Create/Update)
+// - project_dashboard_page.dart (UI orchestration)
