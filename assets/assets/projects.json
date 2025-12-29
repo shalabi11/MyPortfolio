@@ -6,14 +6,12 @@
     "galleryUrl": "YOUR_LIVE_DEMO_OR_GALLERY_URL_HERE",
     "appDistributionUrl": "https://appdistribution.firebase.dev/i/3d9aed29757d9957",
     "technologies": [
-     "Flutter",     
+      "Flutter",     
       "Bloc",
-      "GetIt" , 
-      "Dio" , "lottie" , 
+      "GetIt", 
+      "Dio",
+      "lottie", 
       "Backend : Php , Laravel , MySQL"
-      
-
-     
     ],
     "features": [
       {
@@ -99,6 +97,56 @@
             "https://raw.githubusercontent.com/shalabi11/MyPortfolio/main/screens_faculity_app/student_profil.png"
         ]
        }
+    ]
+  }
+,
+{
+    "title": "TownPulse (نبض المدينة)",
+    "description": "تطبيق جوال متكامل (Mobile Application) مبني على Flutter يهدف لربط المستخدمين بالأنشطة والفعاليات المحلية...",
+    "projectUrl": "YOUR_TOWNPULSE_GITHUB_URL_HERE",
+    "galleryUrl": "YOUR_TOWNPULSE_LIVE_DEMO_OR_GALLERY_URL_HERE",
+    "appDistributionUrl": "YOUR_TOWNPULSE_APP_DISTRIBUTION_URL_HERE",
+    "technologies": [
+      "Flutter",
+      "Bloc/Cubit",
+      "Dio",
+      "Geolocator",
+      "Flutter Map",
+      "GoRouter",
+      "Shared Preferences",
+      "Backend (REST API)"
+    ],
+    "features": [
+      {
+        "title": "نظام اكتشاف متقدم (Discovery & Search)",
+        "description": "يوفر نظام بحث وفلترة متطور للأنشطة...",
+        "imagePaths": []
+      },
+      {
+        "title": "إدارة الأنشطة (CRUD)",
+        "description": "يتيح للمنظمين إنشاء نشاط شامل...",
+        "imagePaths": []
+      },
+      {
+        "title": "الخرائط وتحديد المواقع (Mapping & Geolocation)",
+        "description": "استخدام مكتبة Flutter Map لاختيار وتحديد الموقع...",
+        "imagePaths": []
+      },
+      {
+        "title": "إدارة الحضور والتحقق (Attendance Management)",
+        "description": "يوفر للمنظمين واجهة لعرض قائمة الحضور...",
+        "imagePaths": []
+      },
+      {
+        "title": "التقييمات والمراجعات (Reviews & Ratings)",
+        "description": "نظام متكامل يتيح للمستخدمين إضافة تقييم...",
+        "imagePaths": []
+      },
+      {
+        "title": "إدارة حساب المستخدم والمصادقة (User & Auth)",
+        "description": "نظام مصادقة كامل (تسجيل الدخول، التسجيل...)",
+        "imagePaths": []
+      }
     ]
   }
 ]
