@@ -4,24 +4,31 @@ import 'package:uuid/uuid.dart';
 
 class ProjectDatabaseService {
   static const String projectBoxName = 'projects';
-  static late Box<ProjectDb> _projectBox;
+  static late Box _projectBox;
 
   /// Initialize Hive and open the projects box
   static Future<void> initialize() async {
     await Hive.initFlutter();
-    Hive.registerAdapter(ProjectDbAdapter());
-    _projectBox = await Hive.openBox<ProjectDb>(projectBoxName);
+    _projectBox = await Hive.openBox(projectBoxName);
   }
 
   /// Get all projects
   static List<ProjectDb> getAllProjects() {
-    return _projectBox.values.toList();
+    final projects = <ProjectDb>[];
+    for (var key in _projectBox.keys) {
+      final data = _projectBox.get(key);
+      if (data is Map) {
+        projects.add(ProjectDb.fromJson(Map<String, dynamic>.from(data)));
+      }
+    }
+    return projects;
   }
 
   /// Get project by ID
   static ProjectDb? getProjectById(String id) {
     try {
-      return _projectBox.values.firstWhere((project) => project.id == id);
+      final projects = getAllProjects();
+      return projects.firstWhere((project) => project.id == id);
     } catch (e) {
       return null;
     }
@@ -52,7 +59,7 @@ class ProjectDatabaseService {
       localImagePath: localImagePath,
     );
 
-    await _projectBox.put(project.id, project);
+    await _projectBox.put(project.id, project.toJson());
     return project;
   }
 
@@ -61,7 +68,7 @@ class ProjectDatabaseService {
     final updatedProject = project.copyWith(
       dateModified: DateTime.now(),
     );
-    await _projectBox.put(project.id, updatedProject);
+    await _projectBox.put(project.id, updatedProject.toJson());
   }
 
   /// Delete project by ID
@@ -77,7 +84,8 @@ class ProjectDatabaseService {
   /// Search projects by title or description
   static List<ProjectDb> searchProjects(String query) {
     final lowerQuery = query.toLowerCase();
-    return _projectBox.values
+    final projects = getAllProjects();
+    return projects
         .where((project) =>
             project.title.toLowerCase().contains(lowerQuery) ||
             project.description.toLowerCase().contains(lowerQuery))
@@ -86,7 +94,8 @@ class ProjectDatabaseService {
 
   /// Filter projects by technology
   static List<ProjectDb> filterByTechnology(String technology) {
-    return _projectBox.values
+    final projects = getAllProjects();
+    return projects
         .where((project) =>
             project.technologies.any((tech) =>
                 tech.toLowerCase() == technology.toLowerCase()))
@@ -96,7 +105,8 @@ class ProjectDatabaseService {
   /// Get unique technologies from all projects
   static List<String> getAllTechnologies() {
     final technologies = <String>{};
-    for (var project in _projectBox.values) {
+    final projects = getAllProjects();
+    for (var project in projects) {
       technologies.addAll(project.technologies);
     }
     return technologies.toList()..sort();
@@ -104,14 +114,15 @@ class ProjectDatabaseService {
 
   /// Get projects sorted by date added (newest first)
   static List<ProjectDb> getProjectsSortedByDate() {
-    final projects = _projectBox.values.toList();
+    final projects = getAllProjects();
     projects.sort((a, b) => b.dateAdded.compareTo(a.dateAdded));
     return projects;
   }
 
   /// Export all projects as JSON
   static List<Map<String, dynamic>> exportProjectsAsJson() {
-    return _projectBox.values.map((p) => p.toJson()).toList();
+    final projects = getAllProjects();
+    return projects.map((p) => p.toJson()).toList();
   }
 
   /// Import projects from JSON
@@ -119,13 +130,8 @@ class ProjectDatabaseService {
       List<Map<String, dynamic>> jsonProjects) async {
     for (var jsonProject in jsonProjects) {
       final project = ProjectDb.fromJson(jsonProject);
-      await _projectBox.put(project.id, project);
+      await _projectBox.put(project.id, jsonProject);
     }
-  }
-
-  /// Get project box for reactive updates (if using ValueListenableBuilder)
-  static Box<ProjectDb> getProjectBox() {
-    return _projectBox;
   }
 
   /// Close the database

@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:my_portfolio/models/project_db_model.dart';
 
 class ProjectsListView extends StatelessWidget {
@@ -94,7 +93,6 @@ class ProjectsListView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               maxLines: 2,
-              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 8),
 
@@ -107,7 +105,6 @@ class ProjectsListView extends StatelessWidget {
                 height: 1.4,
               ),
               maxLines: 2,
-              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 8),
 
@@ -136,7 +133,7 @@ class ProjectsListView extends StatelessWidget {
 
             // Date added
             SelectableText(
-              'Added: ${DateFormat('MMM dd, yyyy').format(project.dateAdded)}',
+              'Added: ${project.dateAdded.toString().split(' ')[0]}',
               style: const TextStyle(fontSize: 11, color: Colors.white70),
             ),
             const Spacer(),

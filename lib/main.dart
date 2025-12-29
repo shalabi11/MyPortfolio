@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/app_router.dart';
-import 'package:my_portfolio/pages/home_page.dart';
 import 'package:my_portfolio/services/project_database_service.dart';
 
 void main() async {

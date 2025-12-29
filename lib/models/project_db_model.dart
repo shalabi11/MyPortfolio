@@ -1,41 +1,15 @@
-import 'package:hive/hive.dart';
-
-part 'project_db_model.g.dart';
-
-@HiveType(typeId: 0)
 class ProjectDb {
-  @HiveField(0)
-  late String id;
-
-  @HiveField(1)
-  late String title;
-
-  @HiveField(2)
-  late String description;
-
-  @HiveField(3)
-  late List<String> technologies;
-
-  @HiveField(4)
-  late String projectUrl;
-
-  @HiveField(5)
-  late String? galleryUrl;
-
-  @HiveField(6)
-  late String? appDistributionUrl;
-
-  @HiveField(7)
-  late List<String> featureImagePaths;
-
-  @HiveField(8)
-  late DateTime dateAdded;
-
-  @HiveField(9)
-  late DateTime dateModified;
-
-  @HiveField(10)
-  late String? localImagePath;
+  String id;
+  String title;
+  String description;
+  List<String> technologies;
+  String projectUrl;
+  String? galleryUrl;
+  String? appDistributionUrl;
+  List<String> featureImagePaths;
+  DateTime dateAdded;
+  DateTime dateModified;
+  String? localImagePath;
 
   ProjectDb({
     required this.id,

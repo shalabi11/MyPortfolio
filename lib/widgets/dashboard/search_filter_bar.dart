@@ -137,10 +137,10 @@ class _SearchFilterBarState extends State<SearchFilterBar> {
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: PopupMenuButton<String>(
-                    child: const Chip(
-                      label: Text('More...'),
+                    child: Chip(
+                      label: const Text('More...'),
                       backgroundColor: Colors.blueGrey[700],
-                      labelStyle: TextStyle(color: Colors.white),
+                      labelStyle: const TextStyle(color: Colors.white),
                     ),
                     onSelected: (tech) {
                       setState(() => _selectedTechnology = tech);
