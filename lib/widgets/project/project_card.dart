@@ -51,8 +51,8 @@ class _ProjectCardState extends State<ProjectCard> {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Colors.black.withOpacity(0.7),
-                          Colors.black.withOpacity(0.1),
+                          Colors.black.withValues(alpha: 0.7),
+                          Colors.black.withValues(alpha: 0.1),
                         ],
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
@@ -142,14 +142,14 @@ class _ProjectCardState extends State<ProjectCard> {
                 icon: const Icon(Icons.visibility, size: 18),
                 label: const Text('View Project'),
                 onPressed: () async {
+                  if (!mounted) return;
                   await Future.delayed(const Duration(milliseconds: 50));
-                  if (context.mounted) {
-                    Navigator.pushNamed(
-                      context,
-                      '/project',
-                      arguments: widget.project,
-                    );
-                  }
+                  if (!mounted) return;
+                  Navigator.pushNamed(
+                    context,
+                    '/project',
+                    arguments: widget.project,
+                  );
                 },
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.white,

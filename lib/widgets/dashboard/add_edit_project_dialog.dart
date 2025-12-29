@@ -65,15 +65,17 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
         allowMultiple: false,
       );
 
-      if (result != null && result.files.single.path != null) {
+      if (result != null && result.files.single.path != null && mounted) {
         setState(() {
           _selectedImagePath = result.files.single.path;
         });
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error picking image: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error picking image: $e')),
+        );
+      }
     }
   }
 
@@ -144,7 +146,9 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
           dateModified: DateTime.now(),
         );
         await ProjectDatabaseService.updateProject(updated);
-        widget.onSave(updated);
+        if (mounted) {
+          widget.onSave(updated);
+        }
       } else {
         // Add new project
         final project = await ProjectDatabaseService.addProject(
@@ -160,14 +164,20 @@ class _AddEditProjectDialogState extends State<AddEditProjectDialog> {
           technologies: _selectedTechnologies,
           localImagePath: _selectedImagePath,
         );
-        widget.onSave(project);
+        if (mounted) {
+          widget.onSave(project);
+        }
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error saving project: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error saving project: $e')),
+        );
+      }
     } finally {
-      setState(() => _isLoading = false);
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
 

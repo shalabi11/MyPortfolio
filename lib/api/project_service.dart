@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:my_portfolio/models/project_model.dart';
 import 'package:my_portfolio/services/project_database_service.dart';
 
@@ -46,7 +47,7 @@ class ProjectService {
 
 void _debugPrintError(String message) {
   assert(() {
-    print('[ERROR] $message');
+    debugPrint('[ERROR] $message');
     return true;
   }());
 }

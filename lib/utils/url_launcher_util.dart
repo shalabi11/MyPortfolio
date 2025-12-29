@@ -9,7 +9,7 @@ Future<void> launchURL(String url, {BuildContext? context}) async {
       mode: LaunchMode.externalApplication,
     );
 
-    if (!launched && context != null) {
+    if (!launched && context != null && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Could not open: $url'),
@@ -19,7 +19,7 @@ Future<void> launchURL(String url, {BuildContext? context}) async {
     }
   } catch (e) {
     debugPrint('Error launching URL: $e');
-    if (context != null) {
+    if (context != null && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Error opening link. Please try again.'),

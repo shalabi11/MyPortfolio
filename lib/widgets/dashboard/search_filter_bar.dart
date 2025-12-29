@@ -131,8 +131,7 @@ class _SearchFilterBarState extends State<SearchFilterBar> {
                             side: const BorderSide(color: Colors.white30),
                             labelStyle: const TextStyle(color: Colors.white),
                           ),
-                        ))
-                    .toList(),
+                        )),
               if (_selectedTechnology == null && widget.technologies.length > 5)
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),

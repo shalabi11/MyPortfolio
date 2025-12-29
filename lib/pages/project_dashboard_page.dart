@@ -112,13 +112,15 @@ class _ProjectDashboardPageState extends State<ProjectDashboardPage> {
             onPressed: () async {
               await ProjectDatabaseService.deleteProject(projectId);
               _loadProjects();
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Project deleted successfully!'),
-                  duration: Duration(seconds: 2),
-                ),
-              );
+              if (context.mounted) {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Project deleted successfully!'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
             },
             child: const Text(
               'Delete',
