@@ -214,23 +214,27 @@ class _DashboardWithLogoutState extends State<_DashboardWithLogout> {
         title: const Text('Project Dashboard'),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: Center(
-              child: TextButton.icon(
-                icon: const Icon(Icons.logout, color: Colors.white),
-                label: const Text(
-                  'Logout',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () async {
-                  await context.read<AuthProvider>().logout();
-                  if (context.mounted) {
-                    Navigator.of(context).pushReplacementNamed(
-                      AppRouter.homeRoute,
-                    );
-                  }
-                },
+            padding: const EdgeInsets.only(right: 8.0),
+            child: TextButton.icon(
+              icon: const Icon(Icons.logout, color: Colors.white),
+              label: const Text(
+                'Logout',
+                style: TextStyle(color: Colors.white),
               ),
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
+              ),
+              onPressed: () async {
+                await context.read<AuthProvider>().logout();
+                if (context.mounted) {
+                  Navigator.of(context).pushReplacementNamed(
+                    AppRouter.homeRoute,
+                  );
+                }
+              },
             ),
           ),
         ],

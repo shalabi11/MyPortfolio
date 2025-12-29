@@ -34,6 +34,12 @@ class ContactSection extends StatelessWidget {
                   'mailto:${PersonalData.contactEmail}?subject=Contact%20from%20your%20Portfolio';
               launchURL(emailUri);
             },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 12,
+              ),
+            ),
             child: Text(
               PersonalData.contactEmail,
               style: TextStyle(

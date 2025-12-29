@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:my_portfolio/services/auth_service.dart';
+import 'package:my_portfolio/providers/auth_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -38,6 +40,12 @@ class _LoginPageState extends State<LoginPage> {
       if (!mounted) return;
 
       if (success) {
+        // Update AuthProvider to reflect the successful login
+        if (mounted) {
+          await context.read<AuthProvider>().initialize();
+        }
+        if (!mounted) return;
+        
         // Navigate to dashboard
         Navigator.of(context).pushReplacementNamed('/dashboard');
       } else {
