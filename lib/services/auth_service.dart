@@ -3,8 +3,8 @@ import 'package:uuid/uuid.dart';
 
 class AuthService {
   static const String _tokenKey = 'auth_token';
-  static const String _adminUsername = 'admin';
-  static const String _adminPassword = 'portfolio2024!';
+  static const String _adminUsername = 'alshalabi311';
+  static const String _adminPassword = 'Shalabi1@';
 
   late SharedPreferences _prefs;
   bool _isInitialized = false;

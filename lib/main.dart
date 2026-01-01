@@ -42,23 +42,19 @@ class MyPortfolio extends StatelessWidget {
                   builder: (context, authProvider, _) {
                     if (authProvider.isLoading) {
                       return const Scaffold(
-                        body: Center(
-                          child: CircularProgressIndicator(),
-                        ),
+                        body: Center(child: CircularProgressIndicator()),
                       );
                     }
 
                     if (!authProvider.isAuthenticated) {
                       // Redirect to login if not authenticated
                       WidgetsBinding.instance.addPostFrameCallback((_) {
-                        Navigator.of(context).pushReplacementNamed(
-                          AppRouter.loginRoute,
-                        );
+                        Navigator.of(
+                          context,
+                        ).pushReplacementNamed(AppRouter.loginRoute);
                       });
                       return const Scaffold(
-                        body: Center(
-                          child: CircularProgressIndicator(),
-                        ),
+                        body: Center(child: CircularProgressIndicator()),
                       );
                     }
 
@@ -230,9 +226,9 @@ class _DashboardWithLogoutState extends State<_DashboardWithLogout> {
               onPressed: () async {
                 await context.read<AuthProvider>().logout();
                 if (context.mounted) {
-                  Navigator.of(context).pushReplacementNamed(
-                    AppRouter.homeRoute,
-                  );
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(AppRouter.homeRoute);
                 }
               },
             ),

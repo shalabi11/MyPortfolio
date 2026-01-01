@@ -105,10 +105,6 @@ class ProjectDashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // This page is now handled by main.dart with authentication
-    return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
+    return const Scaffold(body: Center(child: CircularProgressIndicator()));
   }
 }

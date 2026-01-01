@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
           await context.read<AuthProvider>().initialize();
         }
         if (!mounted) return;
-        
+
         // Navigate to dashboard
         Navigator.of(context).pushReplacementNamed('/dashboard');
       } else {
@@ -210,7 +210,8 @@ class _LoginPageState extends State<LoginPage> {
                                           strokeWidth: 2,
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
-                                                  Colors.white),
+                                                Colors.white,
+                                              ),
                                         ),
                                       )
                                     : SelectableText(
